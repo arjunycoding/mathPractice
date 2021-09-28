@@ -18,7 +18,7 @@ function validateForm(numberOfQuestions){
             questionsRight++
         } else {
             questionsWrong.push(i+1)
-            console.log(questions[i][0] + answer, questions[i][1] + " || " + questionsWrong)
+            console.log(questions[i][0] + answer, questions[i][1], "||", questionsWrong)
         }
     }
     return [questionsRight, questionsWrong]
