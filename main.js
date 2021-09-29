@@ -14,11 +14,11 @@ function validateForm(numberOfQuestions){
         let id = '#question' + (i + 1)
         let answer = $(id).val()
         
-        if(questions[i][1] != "" && questions[i][1] == answer){
+        if(questions[i][1] == answer || questions[i][1] != ""){
             questionsRight++
         } else {
             questionsWrong.push(i+1)
-            console.log(questions[i][0] + answer, questions[i][1], "||", questionsWrong)
+            console.log(questions[i][0] + " " +answer, questions[i][1])
         }
     }
     return [questionsRight, questionsWrong]
@@ -32,7 +32,8 @@ function createQuestions(numberOfQuestions){
     }
     return questions
 }
-let questions = createQuestions(10)
+let numberOfQuestions = 5
+let questions = createQuestions(5)
 for(let i = 0; i < questions.length; i++){
     let id = i
     id = 'question' + (i + 1)
@@ -48,20 +49,21 @@ for(let i = 0; i < questions.length; i++){
 }
 
 $("#submit").on("click", function(){
-    let score = validateForm(10)
-    console.log(score)
+    let score = validateForm(5)
     let questionsWrong = score[1]
     let scoreStr = ""
     if(questionsWrong.length == 0){
-        scoreStr = `You Got ${score[0]} / 10. You Got Questions ${score[1]} Wrong`
+        scoreStr = `You Got ${score[0]} / 5. You Got No Questions Wrong! YOU ROCK`
+        pop()
+    }
+    else if(questionsWrong.length == numberOfQuestions){
+        scoreStr = `You Got ${score[0]} / 5. It's OK. You Might Have Got All The Questions Worng Now but Keep Working Hard & You'll Get It!`
         // pop()
     }
     $("#score").html(scoreStr)
     for(let i = 0; i < questionsWrong.length; i++){
         id = '#grade' + questionsWrong[i]
         el = $(id)
-        console.log("hi")
-        console.log(el)
         $(id).addClass("wrong")
     }
     $(".none").not(".wrong").addClass("right")
