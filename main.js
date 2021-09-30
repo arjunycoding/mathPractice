@@ -1,12 +1,3 @@
-let mathPractice = $("#mathPractice")
-function generateMutiplication(table, maxNum){
-    let num1 = table
-    let num2 = Math.floor(Math.random() * maxNum) + 0
-    if(table.toLowerCase() == 'random'){
-        num1 = Math.floor(Math.random() * maxNum) + 0
-    }
-    return [`${num1} x ${num2} =`, num1 * num2]
-}
 function validateForm(numberOfQuestions){
     let questionsRight = 0
     let questionsWrong = []
@@ -27,7 +18,12 @@ function createQuestions(numberOfQuestions){
     let questions = []
     for(let i = 1; i <= numberOfQuestions; i++){
         let varName = 'q' + i;
-        questions.push(generateMutiplication("Random", 12))
+        let maxIndex = decimals.length
+        let index = Math.floor(Math.random() * maxIndex) + 0
+        console.log(index)
+        let question = [decimals[index].problem, decimals[index].answer]
+        // console.log(decimals[maxIndex].problem, questions)
+        questions.push(question)
         // let varName = value;
     }
     return questions
@@ -62,8 +58,8 @@ $("#submit").on("click", function(){
     }
     $("#score").html(scoreStr)
     for(let i = 0; i < questionsWrong.length; i++){
-        id = '#grade' + questionsWrong[i]
-        el = $(id)
+        let id = '#grade' + questionsWrong[i]
+        let el = $(id)
         $(id).addClass("wrong")
     }
     $(".none").not(".wrong").addClass("right")
