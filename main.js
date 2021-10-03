@@ -38,13 +38,13 @@ function createQuestions(numberOfQuestions, subject){
 function createButton(id, text){
     $("body").append(`<button id=${id}>${text}</button><br/>`)
 }
-function giveFeedback(numberOfQuestions, questionArray){
+function giveFeedback(numberOfQuestions, questionArray, submitButtonId){
     let score = validateForm(numberOfQuestions, questionArray)
     let questionsWrong = score[1]
     let scoreStr = ""
     if(questionsWrong.length == 0){
         scoreStr = `You Got ${score[0]} / ${numberOfQuestions}. You Got No Questions Wrong! YOU ROCK`
-        pop()
+        // fireworks()
     }
     else if(questionsWrong.length == numberOfQuestions){
         scoreStr = `You Got ${score[0]} / ${numberOfQuestions}. It's OK. You Might Have Got All The Questions Worng Now but Keep Working Hard & You'll Get It!`
@@ -58,6 +58,7 @@ function giveFeedback(numberOfQuestions, questionArray){
         $(id).addClass("wrong")
     }
     $(".none").not(".wrong").addClass("right")
+    // $("#" + submitButtonId).hide()
 }
 function createGradeCircles(questionArray){
     for(let i = 0; i < questionArray.length; i++){
@@ -70,7 +71,7 @@ function displayQuestions(questionArray){
     for(let i = 0; i < questionArray.length; i++){
         let id = i
         id = 'question' + (i + 1)
-        $("body")
+        $("#questions")
             .append(`<span>${questionArray[i][0]}</span>`)
             .append(`<input type='number' id='${id}' name='${id}'/><br/>`)
     }
@@ -80,7 +81,8 @@ function mathPractice(numberOfQuestions){
     displayQuestions(questions)
     createGradeCircles(questions)
     createButton('submit', 'SUBMIT')
-    $("#submit").on("click", function(){giveFeedback(numberOfQuestions, questions)})
+    $("#submit").on("click", function(){giveFeedback(numberOfQuestions, questions, "submit")})
+    $("#typeOfTest").css("height", "0px");
     $("#typeOfTest").hide()
     $("#continue").hide()
 

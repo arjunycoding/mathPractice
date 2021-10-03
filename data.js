@@ -12,23 +12,31 @@ decimals = [
     },
     {
         problem : "1.3 x 10",
-        answer : 1.3 * 10                   
+        answer : 1.3 * 10
     },
     {
         problem : "314 / 100",
-        answer : 314 / 100                   
+        answer : 314 / 100
     },
     {
         problem : "0.285 x 1000",
-        answer :  0.285 * 1000    
+        answer :  0.285 * 1000
     },
     {
         problem : "146 / 1000",
-        answer : 146 / 1000                   
+        answer : 146 / 1000
     },
     {
         problem : "124.5 / 10",
-        answer : 124.5 / 10                   
+        answer : 124.5 / 10
+    },
+    {
+        problem : "38.7 / 1",
+        answer : 38.7 / 1
+    },
+    {
+        problem : "4.609 / 100",
+        answer : 4.609 / 100
     },
 ]
 simpleFacts = {
