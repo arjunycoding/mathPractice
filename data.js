@@ -35,8 +35,10 @@ decimals = [
 function basicMultiplication(table, maxNum){
     let num1 = table
     let num2 = Math.floor(Math.random() * maxNum) + 0
-    if(table.toLowerCase() == 'random'){
-        num1 = Math.floor(Math.random() * maxNum) + 0
+    if(typeof table == "string"){
+        if(table.toLowerCase() == 'random'){
+            num1 = Math.floor(Math.random() * maxNum) + 0
+        }
     }
     return [`${num1} x ${num2} =`, num1 * num2]
 }

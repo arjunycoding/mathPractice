@@ -22,26 +22,19 @@ function validateForm(numberOfQuestions, questionArray){
     return [questionsRight, questionsWrong]
 }
 function createQuestions(numberOfQuestions, subject){
-    let indexs = []
     let questions = []
+    console.log(subject, numberOfQuestions)
     if(subject == "basicMultiplication"){
         for(let i = 1; i <= numberOfQuestions; i++){
-            let varName = 'q' + i;
-            let generatedQuestion = basicMultiplication()
+            let generatedQuestion = basicMultiplication(1, 12)
+            console.log(generatedQuestion)
             let question = [generatedQuestion[0], generatedQuestion[1]]
             questions.push(question)
         }
     }
     for(let i = 1; i <= numberOfQuestions; i++){
-        let varName = 'q' + i;
         let maxIndex = subject.length
         let index = Math.floor(Math.random() * maxIndex) + 0
-        indexs.push(index)
-        for(let j = 0; j < indexs.length; j++){
-            while(indexs[j] == index){
-                index = Math.floor(Math.random() * maxIndex) + 0
-            }
-        }
         let question = [subject[index].problem, subject[index].answer]
         questions.push(question)
     }
@@ -84,13 +77,14 @@ function createGradeCircles(questionArray){
 function displayQuestions(questionArray){
     for(let i = 0; i < questionArray.length; i++){
         let id = i
+        console.log(questionArray[i], questionArray.length)
         id = 'question' + (i + 1)
         $("table")
             .append(`
             <tr>
                 <td><span>${questionArray[i][0]}</span></td>
                 <td><input type='number' id='${id}' name='${id}'/></td>
-            </tr>`)
+            </tr>`);
     }
 }
 function mathPractice(numberOfQuestions, subject){
