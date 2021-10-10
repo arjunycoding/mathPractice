@@ -8,17 +8,35 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="score"></div>
-    <div id="questions"></div>
-    <span id="typeOfTest">
-        <input type="radio" id="Test" name="type" value="Test">
-        <label for="Test">Test</label><br>
-        <input type="radio" id="Practice" name="type" value="Practice">
-        <label for="Practice">Practice</label>
-    </span>
+    <div id="all">
+        <b id="heading">Math Practice</b>
+        <hr>
+        <div id="score"></div>
+        <div id="typeOfTest">
+            <h3></h3>
+            <input type="radio" id="Practice" name="typeOfTest" value="Practice"  checked="checked">
+            <label for="Practice">Practice</label><br/>
+            <input type="radio" id="Test" name="typeOfTest" value="Test">
+            <label for="Test">Test</label>
+        </div>
+        <div id="subject">
+            <p>Chose A Supject:</p>
+            <input type="radio" id="decimals" name="subject" value="decimals"  checked="checked">
+            <label for="decimals">Decimals</label><br/>
+            <input type="radio" id="basicMultiplication" name="subject" value="basicMultiplication">
+            <label for="basicMultiplication">Basic Multiplication</label>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="pop.js"></script>
-    <script src="fireworks.js"></script>
-    <script src="data.js"></script>
     <script src="main.js"></script>
 </html>

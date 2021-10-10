@@ -1,3 +1,9 @@
+function importFile(file){
+    $("body").append(`<script src="${file}"></script>`)
+}
+importFile("data.js")
+importFile("pop.js")
+importFile("fireworks.js")
 function validateForm(numberOfQuestions, questionArray){
     let questionsRight = 0
     let questionsWrong = []
@@ -18,16 +24,22 @@ function validateForm(numberOfQuestions, questionArray){
 function createQuestions(numberOfQuestions, subject){
     let indexs = []
     let questions = []
+    if(subject == "basicMultiplication"){
+        for(let i = 1; i <= numberOfQuestions; i++){
+            let varName = 'q' + i;
+            let generatedQuestion = basicMultiplication()
+            let question = [generatedQuestion[0], generatedQuestion[1]]
+            questions.push(question)
+        }
+    }
     for(let i = 1; i <= numberOfQuestions; i++){
         let varName = 'q' + i;
         let maxIndex = subject.length
         let index = Math.floor(Math.random() * maxIndex) + 0
         indexs.push(index)
         for(let j = 0; j < indexs.length; j++){
-
             while(indexs[j] == index){
                 index = Math.floor(Math.random() * maxIndex) + 0
-
             }
         }
         let question = [subject[index].problem, subject[index].answer]
@@ -35,69 +47,98 @@ function createQuestions(numberOfQuestions, subject){
     }
     return questions
 }
-function createButton(id, text){
-    $("body").append(`<button id=${id}>${text}</button><br/>`)
+function createButton(id, text, cl){
+    $("#all").append(`<button id=${id} class=${cl}>${text}</button><br/>`)
 }
 function giveFeedback(numberOfQuestions, questionArray, submitButtonId){
     let score = validateForm(numberOfQuestions, questionArray)
     let questionsWrong = score[1]
     let scoreStr = ""
+    let color = 'black'
     if(questionsWrong.length == 0){
         scoreStr = `You Got ${score[0]} / ${numberOfQuestions}. You Got No Questions Wrong! YOU ROCK`
+        color = 'green'
         // fireworks()
-    }
-    else if(questionsWrong.length == numberOfQuestions){
+    } else if(questionsWrong.length == numberOfQuestions){
         scoreStr = `You Got ${score[0]} / ${numberOfQuestions}. It's OK. You Might Have Got All The Questions Worng Now but Keep Working Hard & You'll Get It!`
+        color = 'red'
     } else{
         scoreStr = `You Got ${score[0]} / ${numberOfQuestions}. Keep It Up!`
+        color = 'black'
     }
-    $("#score").html(scoreStr)
+    $("#score").html(scoreStr).css('color', color)
     for(let i = 0; i < questionsWrong.length; i++){
         let id = '#grade' + questionsWrong[i]
         let el = $(id)
-        $(id).addClass("wrong")
+        el.addClass("wrong")
     }
     $(".none").not(".wrong").addClass("right")
-    // $("#" + submitButtonId).hide()
 }
 function createGradeCircles(questionArray){
     for(let i = 0; i < questionArray.length; i++){
         let id = i
         id = 'grade' + (i + 1)
-        $("body").append(`<span class="none circle" id="${id}"></span>&nbsp;`)
+        $("#all").append(`<span class="none circle" id="${id}"></span>&nbsp;`)
     }
 }
 function displayQuestions(questionArray){
     for(let i = 0; i < questionArray.length; i++){
         let id = i
         id = 'question' + (i + 1)
-        $("#questions")
-            .append(`<span>${questionArray[i][0]}</span>`)
-            .append(`<input type='number' id='${id}' name='${id}'/><br/>`)
+        $("table")
+            .append(`
+            <tr>
+                <td><span>${questionArray[i][0]}</span></td>
+                <td><input type='number' id='${id}' name='${id}'/></td>
+            </tr>`)
     }
 }
-function mathPractice(numberOfQuestions){
-    let questions = createQuestions(numberOfQuestions, decimals)
+function mathPractice(numberOfQuestions, subject){
+    let questions = createQuestions(numberOfQuestions, subject)
     displayQuestions(questions)
     createGradeCircles(questions)
-    createButton('submit', 'SUBMIT')
+    createButton('submit', 'SUBMIT', 'button')
     $("#submit").on("click", function(){giveFeedback(numberOfQuestions, questions, "submit")})
     $("#typeOfTest").css("height", "0px");
     $("#typeOfTest").hide()
     $("#continue").hide()
+    $("table").show()
+    $("thead").hide()
 
 }
 function testOrPractice(){
     let numberOfQuestions = 0
-    if($("input[type=radio]:checked").val() == "Test"){
+    let checkedValue = $("input[type=radio]:checked").val()
+    if(checkedValue == "Test"){
         numberOfQuestions = 10
-    } else if($("input[type=radio]:checked").val() == "Practice"){
+    } else if(checkedValue == "Practice"){
         numberOfQuestions = 5
     }
     return numberOfQuestions
 }
-createButton('continue', 'CONTINUE')
+function choseSubject(){
+    let checkedValue = $("input[name=subject]:checked").val()
+    console.log(checkedValue)
+    if(checkedValue == "basicMultiplication"){
+        console.log(checkedValue)
+        
+    }
+    return checkedValue
+}
+createButton('continue', 'CONTINUE', 'button')
+$("table").hide()
+$("#subject").hide()
 $("#continue").on("click", function(){
-    let numberOfQuestions = testOrPractice()
-    mathPractice(numberOfQuestions)
+    $("#subject").show()
+    $("#typeOfTest").hide()
+    $("#continue").hide()
+    createButton('continue2', 'CONTINUE', 'button')
+    $("#continue2").on("click", function(){
+        $("#subject").hide()
+        $("#continue2").hide()
+        choseSubject()
+        let numberOfQuestions = testOrPractice()
+        let subject = choseSubject()
+        mathPractice(numberOfQuestions, subject)
+    })
 })

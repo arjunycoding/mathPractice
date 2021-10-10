@@ -1,3 +1,7 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #0000007a;
+}
 .none{
     height: 10px;
     width: 10px;
@@ -10,4 +14,45 @@
 }
 .wrong{
     background-color: red;
+}
+.button{
+    background-color: #00b7ff;
+    color: white;
+    border: none;
+    /* padding:5px; */
+    text-align: center;
+    width:90px;
+    height: 20px;
+    
+}
+.button:hover{
+    animation-name: backgroundColor;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+#all{
+    background-color: white;
+    padding:10px;
+    width:75%;
+    margin:auto;
+    text-align: center;
+
+}
+table{
+    margin: auto;
+}
+#heading{
+    font-size: 20px;
+}
+hr{
+    border: solid 0.25px black;
+    width:100%;
+}
+@keyframes buttonBackground{
+    0%{background-color: #00b7ff;}
+    100%{background-color: #009edd;}
 }

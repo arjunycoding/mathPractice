@@ -1,10 +1,3 @@
-function generateDecimal(op){
-    let operation = op
-    let num1= Math.floor(Math.random() * 100) + 0
-    let num2= Math.floor(Math.random() * 100) + 0
-    num1 = i.toFixed(2)
-
-}
 decimals = [
     {
         problem : "12.1 / 10",
@@ -39,13 +32,11 @@ decimals = [
         answer : 4.609 / 100
     },
 ]
-simpleFacts = {
-    multiplication : function (table, maxNum){
-        let num1 = table
-        let num2 = Math.floor(Math.random() * maxNum) + 0
-        if(table.toLowerCase() == 'random'){
-            num1 = Math.floor(Math.random() * maxNum) + 0
-        }
-        return [`${num1} x ${num2} =`, num1 * num2]
+function basicMultiplication(table, maxNum){
+    let num1 = table
+    let num2 = Math.floor(Math.random() * maxNum) + 0
+    if(table.toLowerCase() == 'random'){
+        num1 = Math.floor(Math.random() * maxNum) + 0
     }
+    return [`${num1} x ${num2} =`, num1 * num2]
 }
