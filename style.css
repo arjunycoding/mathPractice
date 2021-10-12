@@ -3,11 +3,13 @@ body{
     background-color: #0000007a;
 }
 .none{
-    height: 10px;
-    width: 10px;
+    height: 15px;
+    width: 15px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
+    float: left;
+    margin: 1px;
 }
 .right{
     background-color: green;
@@ -19,10 +21,11 @@ body{
     background-color: #00b7ff;
     color: white;
     border: none;
-    /* padding:5px; */
+    float: right;
     text-align: center;
-    width:90px;
-    height: 20px;
+    width:100px;
+    height: 30px;
+    font-size: 17px;
     
 }
 .button:hover{
@@ -40,17 +43,19 @@ body{
     width:75%;
     margin:auto;
     text-align: center;
+    font-size: 20px;
 
 }
 table{
     margin: auto;
 }
 #heading{
-    font-size: 20px;
+    font-size: 30px;
 }
 hr{
-    border: solid 0.25px black;
-    width:100%;
+    border: solid 0.25px rgb(196, 196, 196);
+    width:102%;
+    float: left;
 }
 @keyframes buttonBackground{
     0%{background-color: #00b7ff;}

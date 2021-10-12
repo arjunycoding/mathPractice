@@ -26,16 +26,17 @@ function createQuestions(numberOfQuestions, subject){
     console.log(subject, numberOfQuestions)
     if(subject == "basicMultiplication"){
         for(let i = 1; i <= numberOfQuestions; i++){
-            let generatedQuestion = basicMultiplication(1, 12)
+            let generatedQuestion = basicMultiplication("random", 12)
             console.log(generatedQuestion)
             let question = [generatedQuestion[0], generatedQuestion[1]]
             questions.push(question)
         }
     }
+    if(subject == "decimals")
     for(let i = 1; i <= numberOfQuestions; i++){
-        let maxIndex = subject.length
+        let maxIndex = decimals.length
         let index = Math.floor(Math.random() * maxIndex) + 0
-        let question = [subject[index].problem, subject[index].answer]
+        let question = [decimals[index].problem, decimals[index].answer]
         questions.push(question)
     }
     return questions
@@ -71,7 +72,7 @@ function createGradeCircles(questionArray){
     for(let i = 0; i < questionArray.length; i++){
         let id = i
         id = 'grade' + (i + 1)
-        $("#all").append(`<span class="none circle" id="${id}"></span>&nbsp;`)
+        $("#all").append(`<span class="none circle" id="${id}"></span>`)
     }
 }
 function displayQuestions(questionArray){
