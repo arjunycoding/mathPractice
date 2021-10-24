@@ -8,7 +8,7 @@ body{
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
-    float: left;
+    /* float: left; */
     margin: 1px;
 }
 .right{

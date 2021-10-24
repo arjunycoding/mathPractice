@@ -1,9 +1,9 @@
 function importFile(file){
     $("body").append(`<script src="${file}"></script>`)
 }
-importFile("data.js")
-importFile("pop.js")
-importFile("fireworks.js")
+importFile("static/data.js")
+importFile("static/pop.js")
+importFile("static/fireworks.js")
 function validateForm(numberOfQuestions, questionArray){
     let questionsRight = 0
     let questionsWrong = []
